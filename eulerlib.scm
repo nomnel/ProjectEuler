@@ -96,5 +96,5 @@
 	    (let1 b (pred v)
 	      (hash-table-put! ht v b) b))))
 
-(define (pandigital? n)
-  (equal? (iota 9 1) (sort (integer->list n))))
+(define (pandigital? n :optional (d 9))
+  (equal? (iota d 1) (sort (integer->list n))))
