@@ -9,7 +9,8 @@
 	  sum-proper-divisors
 	  prime?
 	  memorize
-	  pandigital?))
+	  pandigital?
+	  is?))
 
 (select-module eulerlib)
 
@@ -62,7 +63,7 @@
        (filter (^p (and (<= p n) (zero? (modulo n p))))
                ps)))
 
-; return closure evaluate nth p-gonal number.
+; returns closure evaluate nth p-gonal number.
 (define (polygonal-formula p)
   (^n (/ (- (* (- p 2) (* n n))
 	    (* (- p 4) n))
@@ -86,7 +87,7 @@
 			((zero? (modulo n i)) #f)
 			(else (loop (+ i 2)))))))))
 
-; return closure memorized-pred".
+; returns closure memorized-pred".
 (define (memorize pred :key (true-list '()) (ht-type 'eq?))
   (let1 ht (make-hash-table ht-type)
     (unless (null? true-list)
@@ -98,3 +99,9 @@
 
 (define (pandigital? n :optional (d 9))
   (equal? (iota d 1) (sort (integer->list n))))
+
+(define (is? ls :optional (type 'eq?))
+  (let1 ht (make-hash-table type)
+    (dolist (v ls)
+      (hash-table-put! ht v #t))
+    (^v (hash-table-get ht v #f))))

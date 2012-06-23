@@ -35,4 +35,6 @@
 (test* "(pandigital? 1357924689)" #f (pandigital? 1357924689))
 (test* "(pandigital? 1324 4)"  #t (pandigital? 1324 4))
 
+(test* "((is? '(1 2 3 4)) 4)"  #t ((is? '(1 2 3 4)) 4))
+
 (test-end)
