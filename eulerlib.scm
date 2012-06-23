@@ -8,7 +8,8 @@
 	  polygonal-formula
 	  sum-proper-divisors
 	  prime?
-	  memorize))
+	  memorize
+	  pandigital?))
 
 (select-module eulerlib)
 
@@ -95,3 +96,6 @@
 	       (hash-table-put! ht v #t)
 	       #t)
 	      (else #f)))))
+
+(define (pandigital? n)
+  (equal? (iota 9 1) (sort (integer->list n))))

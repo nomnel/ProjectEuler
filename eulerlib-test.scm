@@ -31,4 +31,7 @@
 (test* "((memorize prime? with :ht-type :true-list" #f ((memorize prime? :ht-type 'eq? :true-list '(2 3 5 7)) 9))
 (test* "((memorize prime? with :ht-type :true-list" #t ((memorize prime? :ht-type 'eq? :true-list '(2 3 5 7)) 7))
 
+(test* "(pandigital? 135792468)"  #t (pandigital? 135792468))
+(test* "(pandigital? 1357924689)" #f (pandigital? 1357924689))
+
 (test-end)
