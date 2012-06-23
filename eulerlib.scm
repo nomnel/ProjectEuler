@@ -10,7 +10,8 @@
 	  prime?
 	  memorize
 	  pandigital?
-	  is?))
+	  is?
+	  prime-factors))
 
 (select-module eulerlib)
 
@@ -105,3 +106,15 @@
     (dolist (v ls)
       (hash-table-put! ht v #t))
     (^v (hash-table-get ht v #f))))
+
+(define (prime-factors n ps)
+  (define (cont-div n d)
+    (let loop ((n n))
+      (if (zero? (modulo n d))
+	  (loop (quotient n d))
+	  n)))
+  (let loop ((n n) (ps ps) (r '()))
+    (cond ((or (null? ps) (< n (car ps))) r)
+	  ((zero? (modulo n (car ps)))
+	   (loop (cont-div n (car ps)) (cdr ps) (cons (car ps) r)))
+	  (else (loop n (cdr ps) r)))))
