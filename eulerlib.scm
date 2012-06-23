@@ -5,7 +5,10 @@
 	  list->integer
 	  palindrome?
 	  factorize
-	  polygonal-formula))
+	  polygonal-formula
+	  sum-proper-divisors
+	  prime?
+	  memo-prime?))
 
 (select-module eulerlib)
 
@@ -63,3 +66,32 @@
   (^n (/ (- (* (- p 2) (* n n))
 	    (* (- p 4) n))
 	 2)))
+
+; sum of proper divisors
+(define (sum-proper-divisors n ps)
+  (let1 d (apply * (map
+		    (^l (apply + (map (cut expt (car l) <>)
+				      (iota (+ 1 (cadr l))))))
+		    (factorize n ps)))
+    (- d (if (= d 1) 0 n))))
+
+; 試し割り
+(define (prime? n)
+  (cond ((= n 2) #t)
+	((or (< n 2) (even? n)) #f)
+	(else (let1 m (floor->exact (sqrt n))
+		(let loop ((i 3))
+		  (cond ((< m i) #t)
+			((zero? (modulo n i)) #f)
+			(else (loop (+ i 2)))))))))
+
+; return closure is memorized "prime?".
+(define (memo-prime? :optional (ps '()))
+  (let1 ht (make-hash-table)
+    (unless (null? ps)
+      (dolist (p ps) (hash-table-put! ht p #t)))
+    (^n (cond ((hash-table-get ht n #f) #t)
+	      ((prime? n)
+	       (hash-table-put! ht n #t)
+	       #t)
+	      (else #f)))))

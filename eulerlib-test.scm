@@ -5,7 +5,6 @@
 (use eulerlib)
 (test-module 'eulerlib)
 
-(test-section "test range")
 (test* "(range 1 4)"    '(1 2 3)  (range 1 4))
 (test* "(range 10 1 3)" '(10 7 4) (range 10 1 3))
 
@@ -21,8 +20,16 @@
 
 (test* "(factorize 20 '(2 3 5 7))" '((2 2) (5 1))  (factorize 20 '(2 3 5 7)))
 
-(test-section "test polygonal-formula")
 (test* "(triangular 2) " 3 ((polygonal-formula 3) 2))
 (test* "(pentagonal 2) " 5 ((polygonal-formula 5) 2))
+
+(test* "(sum-proper-divisors 12 '(2 3 5 7))" 16 (sum-proper-divisors 12 '(2 3 5 7)))
+
+(test* "(prime? 93)" #f (prime? 93))
+(test* "(prime? 97)" #t (prime? 97))
+
+(test* "((memo-prime?) 9)" #f ((memo-prime?) 9))
+(test* "((memo-prime?) 7)" #t ((memo-prime?) 7))
+(test* "((memo-prime? '(2 3 5 7)) 7)" #t ((memo-prime? '(2 3 5 7)) 7))
 
 (test-end)
