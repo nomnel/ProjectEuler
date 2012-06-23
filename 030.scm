@@ -1,8 +1,5 @@
 ;; Gauche 0.9.3
 
-(add-load-path "." :relative)
-(use eulerlib)
-
 (define (e30)
   (let1 m (* 5 (expt 9 5))
     (let loop ((n 2) (s 0))
