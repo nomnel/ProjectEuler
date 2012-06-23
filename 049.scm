@@ -10,14 +10,12 @@
 ; そのp i jが求める答えになる
 (define (e49)
   (call/cc (^(return)
-	     (for-each
-	      (^p (for-each
-		   (^i (when (and (< p i) (prime? i))
-			 (let1 j (+ i (- i p))
-			   (when (and (< j 10000)
-				      (prime? j)
-				      (= (list->integer (sort (integer->list p)))
-					 (list->integer (sort (integer->list j)))))
-			     (return (list->integer (list p i j)))))))
-		   (map list->integer (permutations* (integer->list p)))))
-	      ($ delete 1487 $ filter (cut < 1000 <>) $ primes 10000)))))
+	     (dolist (p ($ delete 1487 $ filter (cut < 1000 <>) $ primes 10000))
+	       (dolist (i (map list->integer (permutations* (integer->list p))))
+		 (when (and (< p i) (prime? i))
+		   (let1 j (+ i (- i p))
+		     (when (and (< j 10000)
+				(prime? j)
+				(= (list->integer (sort (integer->list p)))
+				   (list->integer (sort (integer->list j)))))
+		       (return (list->integer (list p i j)))))))))))
