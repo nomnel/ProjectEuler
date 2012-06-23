@@ -28,8 +28,7 @@
 (test* "(prime? 93)" #f (prime? 93))
 (test* "(prime? 97)" #t (prime? 97))
 
-(test* "((memo-prime?) 9)" #f ((memo-prime?) 9))
-(test* "((memo-prime?) 7)" #t ((memo-prime?) 7))
-(test* "((memo-prime? '(2 3 5 7)) 7)" #t ((memo-prime? '(2 3 5 7)) 7))
+(test* "((memorize prime? with :ht-type :true-list" #f ((memorize prime? :ht-type 'eq? :true-list '(2 3 5 7)) 9))
+(test* "((memorize prime? with :ht-type :true-list" #t ((memorize prime? :ht-type 'eq? :true-list '(2 3 5 7)) 7))
 
 (test-end)

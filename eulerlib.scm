@@ -8,7 +8,7 @@
 	  polygonal-formula
 	  sum-proper-divisors
 	  prime?
-	  memo-prime?))
+	  memorize))
 
 (select-module eulerlib)
 
@@ -85,13 +85,13 @@
 			((zero? (modulo n i)) #f)
 			(else (loop (+ i 2)))))))))
 
-; return closure is memorized "prime?".
-(define (memo-prime? :optional (ps '()))
-  (let1 ht (make-hash-table)
-    (unless (null? ps)
-      (dolist (p ps) (hash-table-put! ht p #t)))
-    (^n (cond ((hash-table-get ht n #f) #t)
-	      ((prime? n)
-	       (hash-table-put! ht n #t)
+; return closure memorized-pred".
+(define (memorize pred :key (true-list '()) (ht-type 'eq?))
+  (let1 ht (make-hash-table ht-type)
+    (unless (null? true-list)
+      (dolist (v true-list) (hash-table-put! ht v #t)))
+    (^v (cond ((hash-table-get ht v #f) #t)
+	      ((pred v)
+	       (hash-table-put! ht v #t)
 	       #t)
 	      (else #f)))))
