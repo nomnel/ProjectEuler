@@ -88,8 +88,8 @@
 			(else (loop (+ i 2)))))))))
 
 ; returns closure memorized-pred".
-(define (memorize pred :key (true-list '()) (ht-type 'eq?))
-  (let1 ht (make-hash-table ht-type)
+(define (memorize pred :key (true-list '()) (type 'eq?))
+  (let1 ht (make-hash-table type)
     (unless (null? true-list)
       (dolist (v true-list) (hash-table-put! ht v #t)))
     (^v (if (hash-table-exists? ht v)
