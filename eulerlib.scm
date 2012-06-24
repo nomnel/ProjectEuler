@@ -1,4 +1,5 @@
 (define-module eulerlib
+  (use srfi-42)
   (export range
 	  primes
 	  integer->list
@@ -17,10 +18,8 @@
 
 ; (range 1 10) => (1 2 3 4 5 6 7 8 9)
 ; (range 10 1 3) => (10 7 4)
-(define (range s e :optional (d 1))
-  (let1 d ((if (<= s e) + -) (abs d))
-    (iota (ceiling->exact (/. (abs (- s e)) (abs d)))
-	  s d)))
+(define (range start stop :optional (step 1))
+  (list-ec (:range i start stop ((if (< start stop) + -) step)) i))
 
 ;; Sieve of Eratosthenes
 ; (primes 10) => (2 3 5 7)
