@@ -16,4 +16,4 @@
 		     (^(k v p) (if (or (< 1000000 k)
 				       (< v (hash-table-get memo p)))
 				   p k))
-		     1))
+		     1)))
