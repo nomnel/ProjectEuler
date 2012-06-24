@@ -1,5 +1,5 @@
 (use gauche.test)
-(test-start "eulerlib modulo")
+(test-start "eulerlib module")
 
 (add-load-path "." :relative)
 (use eulerlib)
