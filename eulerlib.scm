@@ -12,7 +12,8 @@
 	  memorize
 	  pandigital?
 	  is?
-	  prime-factors))
+	  prime-factors
+	  read-file))
 
 (select-module eulerlib)
 
@@ -117,3 +118,11 @@
 	  ((zero? (modulo n (car ps)))
 	   (loop (cont-div n (car ps)) (cdr ps) (cons (car ps) r)))
 	  (else (loop n (cdr ps) r)))))
+
+(define (read-file file :optional (do-each #f))
+  (let1 fn (if do-each (cut do-each <>) (^l l))
+    (call-with-input-file file
+      (^f (let loop ((ln (read-line f)) (r '()))
+	    (if (eof-object? ln)
+		(reverse r)
+		(loop (read-line f) (cons (fn ln) r))))))))
