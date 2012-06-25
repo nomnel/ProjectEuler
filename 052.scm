@@ -1,0 +1,20 @@
+;; Gauche 0.9.3
+
+(add-load-path "." :relative)
+(use eulerlib)
+
+(define (e52)
+  (define (same-digits? a b)
+    (every = (sort (integer->list a))
+	   (sort (integer->list b))))
+  (let loop ((n 10) (m (quotient 100 6)) (d 2))
+    (cond ((< m n) (loop (expt 10 d)
+			 (quotient (expt 10 (+ d 1)) 6)
+			 (+ d 1)))
+	  ((and (same-digits? n (* 2 n))
+		(same-digits? n (* 3 n))
+		(same-digits? n (* 4 n))
+		(same-digits? n (* 5 n))
+		(same-digits? n (* 6 n)))
+	   n)
+	  (else (loop (+ n 1) m d)))))
