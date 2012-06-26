@@ -5,7 +5,7 @@
 (use srfi-1)
 
 (define (e61)
-  (define (make-polygonals p)
+  (define (polygonals p)
     (let1 fn (polygonal-formula p)
       (let loop ((n 1) (r '()))
 	(let1 v (fn n)
@@ -16,7 +16,7 @@
     (let1 v (make-vector 8)
       (dolist (p (range 3 8))
 	(let1 ht (make-hash-table)
-	  (dolist (n (make-polygonals p))
+	  (dolist (n (polygonals p))
 	    (hash-table-put! ht (quotient n 100)
 			     (cons (modulo n 100)
 				   (hash-table-get ht (quotient n 100) '()))))
@@ -28,7 +28,7 @@
   
   (call/cc
     (^(return)
-      (dolist (8-nal (make-polygonals 8))
+      (dolist (8-nal (polygonals 8))
 	(let loop ((p-nal 8-nal) (l '()) (pols (range 3 8)))
 	  (if (null? pols)
 	      (when (= (modulo p-nal 100) (quotient 8-nal 100))
