@@ -13,7 +13,8 @@
 	  pandigital?
 	  is?
 	  prime-factors
-	  read-file))
+	  read-file
+	  continued-fraction))
 
 (select-module eulerlib)
 
@@ -126,3 +127,13 @@
 	    (if (eof-object? ln)
 		(reverse r)
 		(loop (read-line f) (cons (fn ln) r))))))))
+
+(define (continued-fraction D)
+  (let1	 a0 (floor->exact (sqrt D))
+    (let loop ((pn-1 0) (qn-1 1) (a `(,a0)) (period 0))
+      (if (= (car a) (* 2 a0))
+	  `(,a0 ,(cdr (reverse a)))
+	  (let* ((pn (- (* (car a) qn-1) pn-1))
+		 (qn (/ (- D (* pn pn)) qn-1))
+		 (an (quotient (+ a0 pn) qn)))
+	    (loop pn qn (cons an a) (+ period 1)))))))

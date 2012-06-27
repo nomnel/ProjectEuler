@@ -39,4 +39,6 @@
 
 (test* "(prime-factors 24 '(2 3 5 7))" '(3 2) (prime-factors 24 '(2 3 5 7)))
 
+(test* "(continued-fraction 7)" '(2 (1 1 1 4)) (continued-fraction 7))
+
 (test-end)
