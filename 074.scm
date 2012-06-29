@@ -1,0 +1,31 @@
+;; Gauche 0.9.3
+
+(add-load-path "." :relative)
+(use eulerlib)
+
+(define (e74)
+  (define digit-sum
+    (let1 v (make-vector 10 1)
+      (dolist (n (iota 9 1))
+	(vector-set! v n (* n (vector-ref v (- n 1)))))
+      (^n (apply + (map (cut vector-ref v <>) (integer->list n))))))
+  (define cl (let1 r (make-hash-table)
+	       (for-each (^(k v) (hash-table-put! r k v))
+			 '(169 363601 1454 871 45361 872 45362)
+			 '(3 3 3 2 2 2 2))
+	       r))
+  (define (circular-count n)
+    (cond ((hash-table-get cl n #f))
+	  ((= n (digit-sum n)) 1)
+	  (else #f)))
+
+  (dolist (n (iota 1000000))
+    (let loop ((n n) (l '()))
+      (cond ((circular-count n)
+	     => (^c (for-each (^(k v) (hash-table-put! cl k v))
+			      (cons n l)
+			      (iota (+ 1 (length l)) c))))
+	    (else (loop (digit-sum n)
+			(cons n l))))))
+  (length (filter (cut = 60 <>)
+		  (hash-table-values cl))))
