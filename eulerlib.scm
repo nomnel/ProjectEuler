@@ -14,7 +14,8 @@
 	  is?
 	  prime-factors
 	  read-file
-	  continued-fraction))
+	  continued-fraction
+	  extract-sqrt))
 
 (select-module eulerlib)
 
@@ -137,3 +138,25 @@
 		 (qn (/ (- D (* pn pn)) qn-1))
 		 (an (quotient (+ a0 pn) qn)))
 	    (loop pn qn (cons an a) (+ period 1)))))))
+
+(define (extract-sqrt n p)
+  (define (biggest-x bring-down tgt)
+    (let* ((l (take-while (^i (>= tgt (* i (+ (* 10 bring-down) i))))
+			  (iota 10)))
+	   (r (last l)))
+      (values r (* r (+ (* 10 bring-down) r)))))
+  
+  (receive (1st rest)
+      (let* ((r (real->list n))
+	     (l (append (car r) (cadr r) (circular-list 0))))
+	(split-at l (if (odd? (length (car r))) 1 2)))
+    (let loop ((ans '()) (tgt (list->integer 1st))
+	       (sum 0) (rest rest))
+      (receive (x mul) (biggest-x sum tgt)
+	(let1 ans (cons x ans)
+	  (if (<= p (length ans))
+	      (reverse ans)
+	      (loop ans
+		    (list->integer `(,(- tgt mul) ,(car rest) ,(cadr rest)))
+		    (+ (+ (* 10 sum) x) x)
+		    (cddr rest))))))))
