@@ -41,4 +41,8 @@
 
 (test* "(continued-fraction 7)" '(2 (1 1 1 4)) (continued-fraction 7))
 
+(test* "(extract-sqrt 2 10)" '(1 4 1 4 2 1 3 5 6 2) (extract-sqrt 2 10))
+
+(test* "(real->list 123.456789)" '((1 2 3) (4 5 6 7 8 9)) (real->list 123.456789))
+
 (test-end)

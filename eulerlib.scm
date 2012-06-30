@@ -1,4 +1,5 @@
 (define-module eulerlib
+  (use srfi-1)
   (use srfi-42)
   (export range
 	  primes
@@ -15,7 +16,8 @@
 	  prime-factors
 	  read-file
 	  continued-fraction
-	  extract-sqrt))
+	  extract-sqrt
+	  real->list))
 
 (select-module eulerlib)
 
@@ -139,6 +141,7 @@
 		 (an (quotient (+ a0 pn) qn)))
 	    (loop pn qn (cons an a) (+ period 1)))))))
 
+; 開平法
 (define (extract-sqrt n p)
   (define (biggest-x bring-down tgt)
     (let* ((l (take-while (^i (>= tgt (* i (+ (* 10 bring-down) i))))
@@ -160,3 +163,9 @@
 		    (list->integer `(,(- tgt mul) ,(car rest) ,(cadr rest)))
 		    (+ (+ (* 10 sum) x) x)
 		    (cddr rest))))))))
+
+; (real->list 123.456789) => ((1 2 3) (4 5 6 7 8 9))
+(define (real->list r)
+  (map (^s (integer->list (string->number s)))
+       (string-split (number->string (if exact? (exact->inexact r) r))
+		     ".")))
