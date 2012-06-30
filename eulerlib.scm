@@ -1,6 +1,7 @@
 (define-module eulerlib
   (use srfi-1)
   (use srfi-42)
+  (use srfi-43)
   (export range
 	  primes
 	  integer->list
@@ -17,7 +18,8 @@
 	  read-file
 	  continued-fraction
 	  extract-sqrt
-	  real->list))
+	  real->list
+	  dijkstra))
 
 (select-module eulerlib)
 
@@ -169,3 +171,33 @@
   (map (^s (integer->list (string->number s)))
        (string-split (number->string (if exact? (exact->inexact r) r))
 		     ".")))
+
+(define (dijkstra)
+  (define edges (make-hash-table))
+  (define (edge-push! from to cost)
+    (hash-table-push! edges from `(,to ,cost)))
+  (define (search target V)
+    (let ((d (make-vector (+ 1 V) +inf.0))
+	  (used (make-vector (+ 1 V) #f))
+	  (cost-ref (^(from to)
+		      (cadr (find (^l (= to (car l)))
+				  (hash-table-get edges from))))))
+      (vector-set! d 0 0)
+      (let loop ()
+	(let1 i (car (vector-fold (^(i s e) (if (and (not (vector-ref used i))
+						     (< e (cadr s)))
+						`(,i ,e) s))
+				  '(-1 +inf.0) d))
+	  (unless (= i -1)
+	    (vector-set! used i #t)
+	    (dolist (j (map car (hash-table-get edges i '())))
+	      (vector-set! d j (min (vector-ref d j)
+				    (+ (vector-ref d i) (cost-ref i j)))))
+	    (loop))))
+      (if (list? target)
+	  (apply min (map (^i (vector-ref d i)) target))
+	  (vector-ref d target))))
+  
+  (^(key) (case key
+	    ('edge-push! edge-push!)
+	    ('search search))))
