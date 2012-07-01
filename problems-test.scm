@@ -1,8 +1,10 @@
 (use gauche.test)
 (add-load-path "." :relative)
 
-(dolist (i (iota 50 1))
-  (load (string-append (format #f "~3,'0d" i) ".scm")))
+(use file.util)
+
+(dolist (f (directory-list "." :filter (^s (#/\d+\.scm$/ s))))
+  (load f))
 
 (test-start "problems")
 
