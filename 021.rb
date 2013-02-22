@@ -6,8 +6,8 @@ def e021
 
     Prime.prime_division(n).map{|pd|
       # pd[0]: base, pd[1]: exponent
-      (0..pd[1]).inject(0){|mem, var| mem += pd[0] ** var}}
-                .inject(:*) - n
+      (0..pd[1]).inject(0){|mem, var| mem += pd[0] ** var}
+    }.inject(:*) - n
   end
 
   def amicable_number?(n)
