@@ -10,5 +10,5 @@
   (let loop ((ps (primes 100)) (x 1))
     (let1 y (* x (car ps))
       (if (< 1000000 y)
-	  x
-	  (loop (cdr ps) y)))))
+          x
+          (loop (cdr ps) y)))))

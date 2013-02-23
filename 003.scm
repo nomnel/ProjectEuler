@@ -7,5 +7,5 @@
   (let1 v 600851475143
     (let loop ((ps (reverse (primes (floor->exact (sqrt v))))))
       (if (zero? (modulo v (car ps)))
-	  (car ps)
-	  (loop (cdr ps))))))
+          (car ps)
+          (loop (cdr ps))))))

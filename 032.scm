@@ -10,11 +10,11 @@
   (define (divisors n)
     (let loop ((i (floor->exact (sqrt n))) (res '()))
       (if (< i 2) res
-	  (loop (- i 1) (if (zero? (modulo n i))
-			    (cons `(,i ,(/ n i)) res)
-			    res)))))
+          (loop (- i 1) (if (zero? (modulo n i))
+                            (cons `(,i ,(/ n i)) res)
+                            res)))))
   (apply + (map
-	    (^n (if (any (^d (pandigital? (list->integer `(,(car d) ,(cadr d) ,n))))
-			 (divisors n))
-		    n 0))
-	    (range 1234 10000))))
+             (^n (if (any (^d (pandigital? (list->integer `(,(car d) ,(cadr d) ,n))))
+                          (divisors n))
+                     n 0))
+             (range 1234 10000))))

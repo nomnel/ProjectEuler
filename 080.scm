@@ -7,5 +7,5 @@
   (define (irrationals m)
     (filter (^i (inexact? (sqrt i))) (iota m 1)))
   ($ apply +
-     $ map (^i (apply + (extract-sqrt i 100)))
-     $ irrationals 100))
+   $ map (^i (apply + (extract-sqrt i 100)))
+   $ irrationals 100))

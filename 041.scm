@@ -15,9 +15,9 @@
 (define (e41)
   (define (seek digit)
     (let1 l (reverse (sort (map list->integer
-				(permutations (iota digit 1)))))
+                                (permutations (iota digit 1)))))
       (let loop ((l l))
-	(cond ((null? l) #f)
-	      ((prime? (car l)) (car l))
-	      (else (loop (cdr l)))))))
+        (cond ((null? l) #f)
+              ((prime? (car l)) (car l))
+              (else (loop (cdr l)))))))
   (or (seek 7) (seek 4)))

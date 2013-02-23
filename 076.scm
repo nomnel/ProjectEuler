@@ -8,6 +8,6 @@
     (vector-set! ways 0 1)
     (dolist (i (range 1 100))
       (dolist (j (range i 101))
-	(vector-set! ways j (+ (vector-ref ways j)
-			       (vector-ref ways (- j i))))))
+        (vector-set! ways j (+ (vector-ref ways j)
+                               (vector-ref ways (- j i))))))
     (vector-ref ways 100)))

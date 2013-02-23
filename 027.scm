@@ -13,15 +13,15 @@
 ; またこのとき, aは奇数となる
 (define (e27)
   (let* ((ps (primes 1000))
-	 (p? (memorize prime? :true-list ps)))
+         (p? (memorize prime? :true-list ps)))
     ((^l (* (car l) (cadr l)))
      (fold (^(n p) (if (> (caddr n) (caddr p)) n p))
-	   '(0 0 0)
-	   (append-map
-	    (^a (map (^b `(,a ,b ,(length
-				   (take-while
-				    (^n (let1 y (+ (* n n) (* a n) b)
-					  (and (positive? y) (p? y))))
-				    (iota b)))))
-		     ps))
-	    (iota 1000 -999 2))))))
+           '(0 0 0)
+           (append-map
+             (^a (map (^b `(,a ,b ,(length
+                                     (take-while
+                                       (^n (let1 y (+ (* n n) (* a n) b)
+                                                 (and (positive? y) (p? y))))
+                                       (iota b)))))
+                      ps))
+             (iota 1000 -999 2))))))

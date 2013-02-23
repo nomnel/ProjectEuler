@@ -15,7 +15,7 @@
 ; よって, 9182 - 9999 の範囲を調べればよい.
 (define (e38)
   (fold (^(n p) (let1 i (+ (* n 100000) (* n 2))
-		  (if (and (pandigital? i) (< p i))
-		      i p)))
-	918273645
-	(range 9182 10000)))
+                  (if (and (pandigital? i) (< p i))
+                      i p)))
+        918273645
+        (range 9182 10000)))
