@@ -4,7 +4,6 @@ def e022
   end
 
   names = File.open("names.txt").read.split(/,/).map{|s| s.delete("\"")}.sort
-  names.enum_for(:each_with_index) \
-       .map{|name, idx| name_score(name) * (idx + 1)} \
+  names.map.with_index{|name, idx| name_score(name) * (idx + 1)} \
        .inject(:+)
 end
