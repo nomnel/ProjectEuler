@@ -3,5 +3,5 @@ def e020
     n.downto(1).inject(:*)
   end
 
-  factorial(100).to_s.split("").map{|s| s.to_i}.inject(:+)
+  factorial(100).to_s.split("").map(&:to_i).inject(:+)
 end
