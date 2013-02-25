@@ -13,5 +13,5 @@ def e017
 	# 1000
 	ary.push("onethousand")
 
-	ary.map{|s| s.length}.inject(:+)
+	ary.map(&:length).inject(:+)
 end
