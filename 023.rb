@@ -4,9 +4,8 @@ def e023
   def sum_of_proper_divisors(n)
     return 1 if n == 1
 
-    Prime.prime_division(n).map{|pd|
-      # pd[0]: base, pd[1]: exponent
-      (0..pd[1]).inject(0){|mem, var| mem += pd[0] ** var}
+    Prime.prime_division(n).map{|(base, exponent)|
+      (0..exponent).inject(0){|mem, var| mem += base ** var}
     }.inject(:*) - n
   end
 
