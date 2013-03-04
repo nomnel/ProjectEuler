@@ -11,3 +11,7 @@ def e014
 
   (1..1000000).inject{|p, n| chain_length(p) > chain_length(n) ? p : n}
 end
+
+def e014_answer
+  837799
+end

@@ -1,2 +1,5 @@
 *.scm~
 .DS_Store
+vendor
+.bundle
+Gemfile.lock

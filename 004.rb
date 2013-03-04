@@ -10,3 +10,7 @@ def e004
     }.max
   }.max
 end
+
+def e004_answer
+  906609
+end

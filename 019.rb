@@ -20,3 +20,7 @@ def e019
 
   count
 end
+
+def e019_answer
+  171
+end

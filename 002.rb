@@ -9,3 +9,7 @@ def e002
 
   fib.take_while{|n| n < 4000000}.select(&:even?).inject(:+)
 end
+
+def e002_answer
+  4613732
+end

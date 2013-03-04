@@ -16,3 +16,7 @@ def e021
 
   (2..10000).select{|n| amicable_number?(n)}.inject(:+)
 end
+
+def e021_answer
+  31626
+end

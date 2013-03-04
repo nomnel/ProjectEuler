@@ -15,3 +15,7 @@ def e012
 
   triangle_number.find{|n| divisor_count(n) > 500}
 end
+
+def e012_answer
+  76576500
+end

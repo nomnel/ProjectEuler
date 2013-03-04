@@ -7,3 +7,7 @@ def e022
   names.map.with_index{|name, idx| name_score(name) * (idx + 1)} \
        .inject(:+)
 end
+
+def e022_answer
+  871198282
+end

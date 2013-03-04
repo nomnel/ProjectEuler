@@ -12,3 +12,7 @@ def e009
     }
   end
 end
+
+def e009_answer
+  31875000
+end

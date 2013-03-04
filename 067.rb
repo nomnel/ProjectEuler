@@ -14,3 +14,7 @@ def e067
 
   ary.reverse[0][0]
 end
+
+def e067_answer
+  7273
+end

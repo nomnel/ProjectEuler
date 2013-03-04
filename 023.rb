@@ -23,3 +23,7 @@ def e023
                         .index{|m| abundant_number?(n - m)})
   }.inject(:+)
 end
+
+def e023_answer
+  4179871
+end

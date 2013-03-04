@@ -38,3 +38,7 @@ def e011
 
   products.max
 end
+
+def e011_answer
+  70600674
+end

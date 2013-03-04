@@ -12,3 +12,7 @@ def e025
      .take_while{|val, idx| val < sup} \
      .last[1] + 2
 end
+
+def e025_answer
+  4782
+end

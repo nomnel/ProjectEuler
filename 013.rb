@@ -103,3 +103,7 @@ def e013
   .map(&:to_i).inject(:+) \
   .to_s.slice(0, 10).to_i
 end
+
+def e013_answer
+  5537376230
+end

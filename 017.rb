@@ -15,3 +15,7 @@ def e017
 
   ary.map(&:length).inject(:+)
 end
+
+def e017_answer
+  21124
+end

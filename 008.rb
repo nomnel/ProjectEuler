@@ -6,3 +6,7 @@ def e008
              : ary.slice(i, 5).inject(:*)
   }.max
 end
+
+def e008_answer
+  40824
+end

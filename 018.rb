@@ -29,3 +29,7 @@ def e018
 
   ary.reverse[0][0]
 end
+
+def e018_answer
+  1074
+end
