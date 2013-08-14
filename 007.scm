@@ -1,5 +1,4 @@
-(add-load-path "." :relative)
-(use eulerlib)
+(use math.prime)
 
 (define (e7)
-  (list-ref (primes 200000) 10000))
+  (last (take *primes* 10001)))
