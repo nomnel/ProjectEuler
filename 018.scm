@@ -1,5 +1,3 @@
-;; Gauche 0.9.3
-
 (define (e18)
   (fold-right
     (^(x m) (let1 k (map + x m)

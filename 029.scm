@@ -1,5 +1,3 @@
-;; Gauche 0.9.3
-
 (define (e29)
   (let1 ht (make-hash-table 'eqv?)
     (dolist (a (iota 99 2))

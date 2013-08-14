@@ -1,5 +1,3 @@
-;; Gauche 0.9.3
-
 (use srfi-1)           ; for take-while
 (use gauche.generator) ; for generate
 

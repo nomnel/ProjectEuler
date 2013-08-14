@@ -1,5 +1,3 @@
-;; Gauche 0.9.3
-
 (define (e14)
   (let1 memo (make-hash-table)
     (hash-table-put! memo 1 0)

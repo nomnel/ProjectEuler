@@ -1,5 +1,3 @@
-;; Gauche 0.9.3
-
 (define (e19)
   (let ((sd (modulo (+ 1 365) 7))
         (ml (let mloop ((l '()) (yl (iota 100 1901)))

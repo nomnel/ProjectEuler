@@ -1,5 +1,3 @@
-;; Gauche 0.9.3
-
 ; 1周毎の四隅の合計を足し続ける
 (define (e28)
   (let loop ((len 1) (pos 1) (s 1) (d 2))

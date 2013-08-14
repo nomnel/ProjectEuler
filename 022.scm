@@ -1,5 +1,3 @@
-;; Gauche 0.9.3
-
 (use gauche.sequence)
 
 (define (e22)

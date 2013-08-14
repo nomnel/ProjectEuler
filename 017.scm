@@ -1,5 +1,3 @@
-;; Gauche 0.9.3
-
 (define (e17)
   (let1 v (make-vector 1001 "")
     (for-each (^(i s) (vector-set! v i s))
