@@ -1,9 +1,4 @@
-(add-load-path "." :relative)
-(use eulerlib)
+(use math.prime)
 
 (define (e3)
-  (let1 v 600851475143
-    (let loop ((ps (reverse (primes (floor->exact (sqrt v))))))
-      (if (zero? (modulo v (car ps)))
-          (car ps)
-          (loop (cdr ps))))))
+  (apply max (mc-factorize 600851475143)))
