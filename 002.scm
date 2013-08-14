@@ -1,7 +1,7 @@
 (use srfi-1)           ; for take-while
 (use gauche.generator) ; for generate
 
-(define (e002b)
+(define (e2)
   (define fibs
     ; (take fibs 10) => (0 1 1 2 3 5 8 13 21 34)
     (generator->lseq
