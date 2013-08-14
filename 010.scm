@@ -1,5 +1,5 @@
-(add-load-path "." :relative)
-(use eulerlib)
+(use srfi-1)
+(use math.prime)
 
 (define (e10)
-  (apply + (primes 2000000)))
+  (apply + (take-while (cut < <> 2000000) *primes*)))
