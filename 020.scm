@@ -1,5 +1,5 @@
-(add-load-path "." :relative)
-(use eulerlib)
-
 (define (e20)
-  (apply + (integer->list (apply * (range 100 0)))))
+  (apply + (map digit->integer
+                ($ string->list
+                 $ number->string
+                 $ apply * (iota 100 1)))))
