@@ -1,6 +1,3 @@
-(add-load-path "." :relative)
-(use eulerlib)
-
 (define (e15)
-  (/ (apply * (range 40 20))
-     (apply * (range 20 0))))
+  (/ (apply * (iota 20 21))
+     (apply * (iota 20 1))))
