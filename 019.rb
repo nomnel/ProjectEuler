@@ -1,6 +1,6 @@
 def e019
   def leap_year?(year)
-    ((year % 400).zero?) || ((year % 4).zero? && (not ((year % 100).zero?)))
+    (year % 400).zero? || ((year % 4).zero? && (not (year % 100).zero?))
   end
 
   def month_days(year)
