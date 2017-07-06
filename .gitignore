@@ -1,5 +1,6 @@
 *.scm~
+.bundle
 .DS_Store
 vendor
-.bundle
 Gemfile.lock
+rust_out
