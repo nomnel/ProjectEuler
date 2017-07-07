@@ -1,0 +1,5 @@
+# rust コードのコンパイルと実行
+
+```fish
+set -l n 001; and rustc $n.rs --out-dir rust_out/; and eval rust_out/$n
+```
